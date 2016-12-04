@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="English">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Hector He" />
+
+
+
+<meta name="description" content="Apache Maven
+对Maven不熟，从0学起。
+动起手来，用maven来构建hello world，体会一下不用任何IDE，只用maven的感觉。
+maven的核心概念，你知道几个？
+
+Apache Maven 是用来做什么的？
+Maven 是一个项目管理和自动化构建工具。对于码农来说，我们最关心的是项目构建功能。
+Maven 使用 惯例优于配置 的原则。她要求在没有定制之前，所有的项目都">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Apache Maven 入门">
+<meta property="og:url" content="http://hepingtao.github.io/2016/11/28/maven/index.html">
+<meta property="og:site_name" content="I am a coder like playing badminton.">
+<meta property="og:description" content="Apache Maven
+对Maven不熟，从0学起。
+动起手来，用maven来构建hello world，体会一下不用任何IDE，只用maven的感觉。
+maven的核心概念，你知道几个？
+
+Apache Maven 是用来做什么的？
+Maven 是一个项目管理和自动化构建工具。对于码农来说，我们最关心的是项目构建功能。
+Maven 使用 惯例优于配置 的原则。她要求在没有定制之前，所有的项目都">
+<meta property="og:updated_time" content="2016-12-04T06:29:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Apache Maven 入门">
+<meta name="twitter:description" content="Apache Maven
+对Maven不熟，从0学起。
+动起手来，用maven来构建hello world，体会一下不用任何IDE，只用maven的感觉。
+maven的核心概念，你知道几个？
+
+Apache Maven 是用来做什么的？
+Maven 是一个项目管理和自动化构建工具。对于码农来说，我们最关心的是项目构建功能。
+Maven 使用 惯例优于配置 的原则。她要求在没有定制之前，所有的项目都">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="I am a coder like playing badminton." type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Apache Maven 入门 | I am a coder like playing badminton.</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Hector He</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">To be who are good at learning.</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:hepingtaodev@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/hepingtao" title="GitHub"></a>
+                            
+                                <a class="fa 简书" href="http://www.jianshu.com/users/5caa9fc8a3eb/latest_articles" title="简书"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/">IDEA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VCS/">VCS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pom/">pom</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Hector He</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Hector He</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">To be who are good at learning.</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:hepingtaodev@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/hepingtao" title="GitHub"></a>
+                            
+                                <a class="fa 简书" target="_blank" href="http://www.jianshu.com/users/5caa9fc8a3eb/latest_articles" title="简书"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-maven" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/28/maven/" class="article-date">
+      <time datetime="2016-11-28T03:18:20.000Z" itemprop="datePublished">2016-11-28</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Apache Maven 入门
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jvm/">jvm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/maven/">maven</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pom/">pom</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="Apache-Maven"><a href="#Apache-Maven" class="headerlink" title="Apache Maven"></a>Apache Maven</h1><ol>
+<li>对Maven不熟，从0学起。</li>
+<li>动起手来，用maven来构建hello world，体会一下不用任何IDE，只用maven的感觉。</li>
+<li>maven的核心概念，你知道几个？</li>
+</ol>
+<h2 id="Apache-Maven-是用来做什么的？"><a href="#Apache-Maven-是用来做什么的？" class="headerlink" title="Apache Maven 是用来做什么的？"></a>Apache Maven 是用来做什么的？</h2><ul>
+<li>Maven 是一个项目管理和自动化构建工具。对于码农来说，我们最关心的是项目构建功能。</li>
+<li>Maven 使用 <strong>惯例优于配置</strong> 的原则。她要求在没有定制之前，所有的项目都有如下结构：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>${basedir}</td>
+<td>存放 pom.xml和所有的子目录</td>
+</tr>
+<tr>
+<td>${basedir}/src/main/java</td>
+<td>项目的java源代码</td>
+</tr>
+<tr>
+<td>${basedir}/src/main/resources</td>
+<td>项目的资源，比如说 property 文件</td>
+</tr>
+<tr>
+<td>${basedir}/src/test/java</td>
+<td>项目的测试类，比如说 JUnit 代码</td>
+</tr>
+<tr>
+<td>${basedir}/src/test/resources</td>
+<td>测试使用的资源</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Maven-的安装"><a href="#Maven-的安装" class="headerlink" title="Maven 的安装"></a>Maven 的安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ mvn -v</div><div class="line">Apache Maven 3.0.3 ...</div></pre></td></tr></table></figure>
+<h2 id="Maven-的使用"><a href="#Maven-的使用" class="headerlink" title="Maven 的使用"></a>Maven 的使用</h2><h3 id="建立一个-maven-项目："><a href="#建立一个-maven-项目：" class="headerlink" title="建立一个 maven 项目："></a>建立一个 maven 项目：</h3><ul>
+<li>执行 maven 目标（goal），goal 和 ant 的 target 类似： </li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mvn archetype:generate -DgroupId=com.mycompany.helloworld -DartifactId=helloworld -Dpackage=com.mycompany.helloworld -Dversion=1.0-SNAPSHOT</div></pre></td></tr></table></figure>
+<ul>
+<li>archetype:generate 这个 goal 会列出一系列的 archetype 让你选择。</li>
+<li>archetype 可以理解成 <strong>项目的模型</strong>。Maven 为我们提供了很多种项目模型，或者说模板，从简单的 Swing 到复杂的 Web 应用。</li>
+<li>选择默认的 <code>maven-archetype-quickstart</code>  ，编号为：#106</li>
+<li>确认项目属性的配置，这些属性是我们在命令行中用 <code>-D</code> 选项指定的，使用 <code>-Dname=value</code> 的格式。回车确认，创建项目。</li>
+<li>以上步骤也可以使用下面的命令代替：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mvn archetype:generate -DarchetypeArtifactId=maven-archetype-quickstart -DgroupId=com.mycompany.helloworld -DartifactId=helloworld -Dpackage=com.mycompany.helloworld -Dversion=1.0-SNAPSHOT -DinteractiveMode=false</div></pre></td></tr></table></figure>
+<ul>
+<li>当你第一次运行mvn命令，她会从官方maven库（repository）下载需要的程序，存放在本地库目录（local repository）中，因此，流畅的外网连接对于maven来说是必须的。</li>
+<li>Maven 默认的本地库是 <code>~/.m2/repository</code></li>
+</ul>
+<h3 id="Maven-项目的文件目录结构："><a href="#Maven-项目的文件目录结构：" class="headerlink" title="Maven 项目的文件目录结构："></a>Maven 项目的文件目录结构：</h3><ul>
+<li>如果项目顺利成功创建，最后可以看到 <code>BUILD SUCCESS</code> 的结果。</li>
+<li>同时 maven 会按照之前选择的属性配置和项目模型，为我们建立如下的文件目录结构：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">helloworld</div><div class="line">|-- pom.xml</div><div class="line">`-- src</div><div class="line"> |-- main</div><div class="line"> |   `-- java</div><div class="line"> |       `-- com</div><div class="line"> |           `-- mycompany</div><div class="line"> |               `-- helloworld</div><div class="line"> |                   `-- App.java</div><div class="line"> `-- test</div><div class="line">     `-- java</div><div class="line">         `-- com</div><div class="line">             `-- mycompany</div><div class="line">                 `-- helloworld</div><div class="line">                     `-- AppTest.java</div></pre></td></tr></table></figure>
+<ul>
+<li>各文件目录的用途：</li>
+<li>maven 的 <code>archetype</code> 插件建立了一个 <code>helloworld</code> 目录，这个名字来自 artifactId;</li>
+<li>在 <code>helloworld</code> 目录下，有一个 <strong>Project Object Model(POM)</strong> 文件：pom.xml，用于描述项目、配置插件和管理依赖关系。</li>
+<li>代码目录结构：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">|-- src  # 源代码</div><div class="line">       |-- main  # 正式</div><div class="line">       |   `-- java  # 代码</div><div class="line">       |   `-- resources  # 资源</div><div class="line">       `-- test  # 测试</div><div class="line">           `-- java  # 代码</div><div class="line">           `-- resources  # 资源</div></pre></td></tr></table></figure>
+<ul>
+<li>这个代码目录结构和开始提到的一般Maven项目的目录结构是一致的。</li>
+<li>而且 maven 已经为我们建立了一个 <code>App.java</code> 类文件。</li>
+</ul>
+<h3 id="Maven-项目的构建和运行"><a href="#Maven-项目的构建和运行" class="headerlink" title="Maven 项目的构建和运行"></a>Maven 项目的构建和运行</h3><ul>
+<li>一个maven项目默认情况下会产生.jar文件</li>
+<li>执行以下命令：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cd helloworld</div><div class="line">$ mvn package</div></pre></td></tr></table></figure>
+<ul>
+<li>构建成功，会得到 <code>BUILD SUCCESS</code> 的结果。</li>
+<li><code>helloworld</code> 目录下面会建立一个新目录 <code>target/</code>，存放打包后的 .jar 文件 <code>helloworld-1.0-SNAPSHOT.jar</code>，以及编译后的 <code>class</code> 文件，放在 <code>target/classes/</code> 目录下，测试的 <code>class</code> 文件放在 <code>target/test-classes/</code> 目录下。</li>
+<li>运行java程序</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ java -cp target/helloworld-1.0-SNAPSHOT.jar com.mycompany.helloworld.App</div></pre></td></tr></table></figure>
+<ul>
+<li>验证结果</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Hello World!</div></pre></td></tr></table></figure>
+<h2 id="Maven-的核心概念"><a href="#Maven-的核心概念" class="headerlink" title="Maven 的核心概念"></a>Maven 的核心概念</h2><ul>
+<li><a href="#POM-(Project Object Model">POM (Project Object Model)</a>)</li>
+<li><a href="#Maven-插件">Maven 插件</a></li>
+<li><a href="#Maven-生命周期">Maven 生命周期</a></li>
+<li><a href="#Maven-依赖管理">Maven 依赖管理</a></li>
+<li><a href="#Maven-库">Maven 库</a></li>
+</ul>
+<h3 id="POM-Project-Object-Model"><a href="#POM-Project-Object-Model" class="headerlink" title="POM (Project Object Model)"></a><strong>POM (Project Object Model)</strong></h3><ul>
+<li>一个Maven项目所有的配置都放在 POM 文件中：定义项目的类型、名字、管理依赖关系、定制插件行为等等。比如，可以配置 compiler 插件使用 java 1.5 来编译。</li>
+<li>在 POM 中，<strong>groupId，artifactId，packaging，version</strong> 叫做 Maven 坐标，它能唯一确定一个项目。有了 Maven 坐标，我们就可以用它来指定我们的项目所依赖的其他项目、插件，或者父项目。一般 maven 坐标写成如下的格式：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">groupId:artifactId:packaging:version</div></pre></td></tr></table></figure>
+<ul>
+<li>像我们的例子就会写成：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">com.mycompany.helloworld:helloworld:jar:1.0-SNAPSHOT</div></pre></td></tr></table></figure>
+<ul>
+<li>我们的 <code>helloworld</code> 示例很简单，但是大项目一般会分成几个子项目。在这种情况下，每个子项目就会有自己的 POM 文件，然后他们会有一个共同的父项目，子项目的 POM 会继承父项目的 POM，只要构建父项目就能够构建所有的子项目。</li>
+<li>另外，所有的POM都继承了一个 Super-POM。Super-POM 设置了一些默认值，比如之前提到的默认的目录结构，默认的插件等等，它遵循了惯例优于配置的原则。所以尽管我们的这个 POM 很简单，但是这只是你看到的一部分，运行时候的 POM 要复杂的多。</li>
+<li>如果你想看到运行时候的 POM 的全部内容的话，可以运行下面的命令：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mvn help:effective-pom</div></pre></td></tr></table></figure>
+<h3 id="Maven-插件"><a href="#Maven-插件" class="headerlink" title="Maven 插件"></a><strong>Maven 插件</strong></h3><ul>
+<li>之前我们用到了 <code>mvn archetype:generate</code> 命令来生成一个项目，这是什么意思呢？</li>
+<li><code>archetype</code> 是一个插件(plugin)的名字</li>
+<li><code>generate</code> 是目标(goal)的名字<ul>
+<li>这个命令是告诉maven执行 <code>archetype</code> 插件的 <code>generate</code> 目标，即执行一个插件目标，通常写成 <em>pluginId:goalId</em> 的形式。</li>
+</ul>
+</li>
+<li>一个目标(goal)是一个工作单元，而插件则是一个或是多个目标的集合。比如：<ul>
+<li>Jar 插件：包含建立Jar文件的目标</li>
+<li>Compiler 插件：包含编译源代码和单元测试代码的目标</li>
+<li>Surefire 插件：包含运行单元测试的目标</li>
+</ul>
+</li>
+<li>maven 本身不会做太多事情，她其实不知道怎样去编译或者打包。她把构建的任务交给插件去做。</li>
+<li>插件定义了常用的构建逻辑，能够被重复利用。这样做的好处是，一旦插件有了更新，那么所有的 Maven 用户都能得到更新。</li>
+</ul>
+<h3 id="Maven-生命周期"><a href="#Maven-生命周期" class="headerlink" title="Maven 生命周期"></a><strong>Maven 生命周期</strong></h3><ul>
+<li>之前我们用到了 <code>mvn package</code> 命令来打包，这个 package 又是啥？</li>
+<li>项目的构建过程叫做 Maven 生命周期(lifecycle)，它包含了一系列的有序的阶段(phase)，而一个阶段就是构建过程中的一个步骤。</li>
+<li>package 就是一个 maven 的生命周期阶段(lifecycle phase)</li>
+<li>插件目标可以绑定到生命周期阶段上，一个生命周期阶段可以绑定多个插件目标。</li>
+<li>当 maven 在构建过程中逐步的通过每个阶段时，会执行该阶段所有的插件目标。</li>
+<li>maven 能支持不同的生命周期，但是最常用的还是默认的 Maven 生命周期(default Maven lifecycle)</li>
+<li>如果你没有进行任何的插件配置，那么上面的命令 <code>mvn package</code> 会依次执行默认生命周期中package阶段前的所有阶段的插件目标，最后执行package阶段的插件目标，如下：<ol>
+<li>process-resources 阶段： resources:resources</li>
+<li>compile 阶段： compiler:compile</li>
+<li>process-classes 阶段： 默认无目标</li>
+<li>process-test-resources 阶段： resources:testResources</li>
+<li>test-compile 阶段： compiler:testCompile</li>
+<li>test 阶段： surefire:test</li>
+<li>prepare-package 阶段： 默认无目标</li>
+<li>package 阶段： jar:jar</li>
+</ol>
+</li>
+</ul>
+<h3 id="Maven-依赖管理"><a href="#Maven-依赖管理" class="headerlink" title="Maven 依赖管理"></a><strong>Maven 依赖管理</strong></h3><ul>
+<li>Maven 坐标能够确定一个项目，也就可以用它来解决依赖关系。</li>
+<li>在POM中，依赖关系是在 <code>dependencies</code> 部分定义的。</li>
+<li>实际开发中会有复杂得多的依赖关系，因为被依赖的jar文件会有自己的依赖关系。</li>
+<li>因为maven提供了传递依赖的特性，因此不需要把那些间接依赖的jar文件也定义在pom文件中。</li>
+<li>所谓传递依赖，是指maven会检查被依赖的jar文件中的pom文件，把它的依赖关系纳入最终的依赖关系链中。</li>
+<li>在 POM 的 <code>dependencies</code> 部分中，<code>scope</code> 决定了依赖关系的适用范围：</li>
+<li>test：执行compiler:testCompile 和 surefire:test 时，才会加到 classpath 中</li>
+<li>provided：表示 JDK 或者 容器会提供所需的jar文件，比如Web应用中的 servlet API 相关的 jar 文件，编译时需要用到，打包时不需要包含在 WAR 包中，因为servlet容器或者应用服务器会提供。</li>
+<li>compile：任何时候都会被包含在 classpath 中，打包时也会被包含进去。</li>
+</ul>
+<h3 id="Maven-库"><a href="#Maven-库" class="headerlink" title="Maven 库"></a><strong>Maven 库</strong></h3><ul>
+<li>Maven 官方远程库：<a href="http://repo1.maven.org/maven2" target="_blank" rel="external">http://repo1.maven.org/maven2</a>，包含核心插件和可供下载的jar包</li>
+<li>对于我们自己开发的公共包：</li>
+<li>可以搭建私有库</li>
+<li>也可以手工安装所需的jar文件到本地库</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mvn install</div></pre></td></tr></table></figure>
+<ul>
+<li>项目安装到本地库后，其他项目就可以通过 maven 坐标和这个项目建立依赖关系。</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/11/28/maven/">Apache Maven 入门</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Hector He</a></p>
+        <p><span>发布时间:</span>2016-11-28, 11:18:20</p>
+        <p><span>最后更新:</span>2016-12-04, 14:29:47</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/11/28/maven/" title="Apache Maven 入门">http://hepingtao.github.io/2016/11/28/maven/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://hepingtao.github.io/2016/11/28/maven/　　作者: Hector He" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/12/01/MyOpinionAboutHexo/">
+                    对 Hexo 吐槽一下
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/11/24/vcsOfIdea/">
+                    IntelliJ IDEA 版本控制
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Apache-Maven"><span class="toc-number">1.</span> <span class="toc-text">Apache Maven</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Apache-Maven-是用来做什么的？"><span class="toc-number">1.1.</span> <span class="toc-text">Apache Maven 是用来做什么的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Maven-的安装"><span class="toc-number">1.2.</span> <span class="toc-text">Maven 的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Maven-的使用"><span class="toc-number">1.3.</span> <span class="toc-text">Maven 的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#建立一个-maven-项目："><span class="toc-number">1.3.1.</span> <span class="toc-text">建立一个 maven 项目：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Maven-项目的文件目录结构："><span class="toc-number">1.3.2.</span> <span class="toc-text">Maven 项目的文件目录结构：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Maven-项目的构建和运行"><span class="toc-number">1.3.3.</span> <span class="toc-text">Maven 项目的构建和运行</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Maven-的核心概念"><span class="toc-number">1.4.</span> <span class="toc-text">Maven 的核心概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#POM-Project-Object-Model"><span class="toc-number">1.4.1.</span> <span class="toc-text">POM (Project Object Model)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Maven-插件"><span class="toc-number">1.4.2.</span> <span class="toc-text">Maven 插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Maven-生命周期"><span class="toc-number">1.4.3.</span> <span class="toc-text">Maven 生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Maven-依赖管理"><span class="toc-number">1.4.4.</span> <span class="toc-text">Maven 依赖管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Maven-库"><span class="toc-number">1.4.5.</span> <span class="toc-text">Maven 库</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/12/01/MyOpinionAboutHexo/" title="上一篇: 对 Hexo 吐槽一下">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/11/24/vcsOfIdea/" title="下一篇: IntelliJ IDEA 版本控制">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/12/04/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/01/MyOpinionAboutHexo/">对 Hexo 吐槽一下</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/28/maven/">Apache Maven 入门</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/24/vcsOfIdea/">IntelliJ IDEA 版本控制</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 Hector He
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 2;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<div class="ribbon">
+    <a href="https://github.com/hepingtao">Fork me on GitHub</a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
